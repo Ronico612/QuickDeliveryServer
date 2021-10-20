@@ -29,5 +29,14 @@ namespace QuickDeliveryServer.Controllers
         {
             return "hello Roni!";
         }
+
+        [Route("GetShops")]
+        [HttpGet]
+        public List<Shop> GetGetShops()
+        {
+            return context.Shops.ToList();
+        }
+
+
     }       
 }
