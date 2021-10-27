@@ -13,7 +13,6 @@ TypeUser nvarchar NOT NULL,
 
 CREATE TABLE Users(
 UserID int IDENTITY (1,1) PRIMARY KEY,
-TypeUserID int FOREIGN KEY REFERENCES UserType(TypeUserID),
 UserFName nvarchar (15) NOT NULL,
 UserLName nvarchar (15) NOT NULL,
 Username nvarchar (25) NOT NULL,
@@ -109,5 +108,67 @@ StatusOrderID int FOREIGN KEY REFERENCES StatusOrder(StatusOrderID),
 StatusTime datetime,
 );
 
+ALTER TABLE Users 
+ALTER COLUMN UserPhone nvarchar(10)
+
+DROP TABLE UserType
+
+ALTER TABLE Users 
+ALTER COLUMN UserAdress nvarchar (30) NOT NULL
+ALTER TABLE Users 
+ALTER COLUMN UserCity nvarchar (15) NOT NULL
+
+ALTER TABLE Shop
+ALTER COLUMN ShopName nvarchar (15) NOT NULL
+ALTER TABLE Shop
+ALTER COLUMN ShopAdress nvarchar (30) NOT NULL
+ALTER TABLE Shop
+ALTER COLUMN ShopCity nvarchar (15) NOT NULL 
+
+ALTER TABLE StatusOrder
+ALTER COLUMN TypeStatus nvarchar (30) NOT NULL
+
+ALTER TABLE Products
+ALTER COLUMN ProductName nvarchar (15) NOT NULL
+
+ALTER TABLE ProductType
+ALTER COLUMN ProductType nvarchar (15) NOT NULL
+
+INSERT INTO StatusOrder (TypeStatus)
+VALUES ('waiting');
+INSERT INTO StatusOrder (TypeStatus)
+VALUES ('approved');
+INSERT INTO StatusOrder (TypeStatus)
+VALUES ('taken');
+INSERT INTO StatusOrder (TypeStatus)
+VALUES ('brought');
+INSERT INTO StatusOrder (TypeStatus)
+VALUES ('canceled');
+
+INSERT INTO ProductType (ProductType)
+VALUES ('Kids');
+INSERT INTO ProductType (ProductType)
+VALUES ('Women');
+INSERT INTO ProductType (ProductType)
+VALUES ('Men');
+INSERT INTO ProductType (ProductType)
+VALUES ('Tops');
+INSERT INTO ProductType (ProductType)
+VALUES ('TShirts');
+INSERT INTO ProductType (ProductType)
+VALUES ('Pants');
+INSERT INTO ProductType (ProductType)
+VALUES ('Jeans');
+INSERT INTO ProductType (ProductType)
+VALUES ('Dresses');
+INSERT INTO ProductType (ProductType)
+VALUES ('Skirts');
 
 
+INSERT INTO Shop (TypeStatus)
+VALUES ('');
+ShopName nvarchar NOT NULL,
+ShopAdress nvarchar NOT NULL,
+ShopManagerID int FOREIGN KEY REFERENCES ShopManagers(ShopManagerID),
+ShopCity nvarchar NOT NULL, 
+ShopPhone int NOT NULL,

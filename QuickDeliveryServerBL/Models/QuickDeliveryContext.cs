@@ -28,7 +28,6 @@ namespace QuickDeliveryServerBL.Models
         public virtual DbSet<ShopManager> ShopManagers { get; set; }
         public virtual DbSet<StatusOrder> StatusOrders { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserType> UserTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -155,7 +154,7 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.ProductName)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasMaxLength(15);
 
                 entity.Property(e => e.ShopId).HasColumnName("ShopID");
 
@@ -173,7 +172,7 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.ProductType1)
                     .IsRequired()
-                    .HasMaxLength(1)
+                    .HasMaxLength(15)
                     .HasColumnName("ProductType");
             });
 
@@ -185,17 +184,17 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.ShopAdress)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.ShopCity)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasMaxLength(15);
 
                 entity.Property(e => e.ShopManagerId).HasColumnName("ShopManagerID");
 
                 entity.Property(e => e.ShopName)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasMaxLength(15);
 
                 entity.HasOne(d => d.ShopManager)
                     .WithMany(p => p.Shops)
@@ -224,29 +223,27 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.TypeStatus)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasMaxLength(30);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF81DE3C837")
+                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF803B04829")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.Property(e => e.HasDiscount).HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.TypeUserId).HasColumnName("TypeUserID");
-
                 entity.Property(e => e.UserAdress)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.UserBirthDate).HasColumnType("datetime");
 
                 entity.Property(e => e.UserCity)
                     .IsRequired()
-                    .HasMaxLength(1);
+                    .HasMaxLength(15);
 
                 entity.Property(e => e.UserEmail)
                     .IsRequired()
@@ -266,28 +263,11 @@ namespace QuickDeliveryServerBL.Models
                     .IsRequired()
                     .HasMaxLength(25);
 
+                entity.Property(e => e.UserPhone).HasMaxLength(10);
+
                 entity.Property(e => e.Username)
                     .IsRequired()
                     .HasMaxLength(25);
-
-                entity.HasOne(d => d.TypeUser)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.TypeUserId)
-                    .HasConstraintName("FK__Users__TypeUserI__276EDEB3");
-            });
-
-            modelBuilder.Entity<UserType>(entity =>
-            {
-                entity.HasKey(e => e.TypeUserId)
-                    .HasName("PK__UserType__49E1F51D6CEC4761");
-
-                entity.ToTable("UserType");
-
-                entity.Property(e => e.TypeUserId).HasColumnName("TypeUserID");
-
-                entity.Property(e => e.TypeUser)
-                    .IsRequired()
-                    .HasMaxLength(1);
             });
 
             OnModelCreatingPartial(modelBuilder);
