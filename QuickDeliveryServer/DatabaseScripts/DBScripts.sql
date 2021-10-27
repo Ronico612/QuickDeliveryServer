@@ -165,10 +165,10 @@ INSERT INTO ProductType (ProductType)
 VALUES ('Skirts');
 
 
-INSERT INTO Shop (TypeStatus)
-VALUES ('');
-ShopName nvarchar NOT NULL,
-ShopAdress nvarchar NOT NULL,
-ShopManagerID int FOREIGN KEY REFERENCES ShopManagers(ShopManagerID),
-ShopCity nvarchar NOT NULL, 
-ShopPhone int NOT NULL,
+--INSERT INTO Shop (TypeStatus)
+--VALUES ('');
+--ShopName nvarchar NOT NULL,
+--ShopAdress nvarchar NOT NULL,
+--ShopManagerID int FOREIGN KEY REFERENCES ShopManagers(ShopManagerID),
+--ShopCity nvarchar NOT NULL, 
+--ShopPhone int NOT NULL,
