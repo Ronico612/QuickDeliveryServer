@@ -32,7 +32,7 @@ namespace QuickDeliveryServer.Controllers
 
         [Route("GetShops")]
         [HttpGet]
-        public List<Shop> GetGetShops()
+        public List<Shop> GetShops()
         {
             return context.Shops.ToList();
         }
