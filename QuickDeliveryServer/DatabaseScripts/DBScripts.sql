@@ -124,6 +124,8 @@ ALTER TABLE Shop
 ALTER COLUMN ShopAdress nvarchar (30) NOT NULL
 ALTER TABLE Shop
 ALTER COLUMN ShopCity nvarchar (15) NOT NULL 
+ALTER TABLE Shop
+ALTER COLUMN ShopPhone nvarchar (15) NOT NULL
 
 ALTER TABLE StatusOrder
 ALTER COLUMN TypeStatus nvarchar (30) NOT NULL
@@ -165,10 +167,19 @@ INSERT INTO ProductType (ProductType)
 VALUES ('Skirts');
 
 
---INSERT INTO Shop (TypeStatus)
---VALUES ('');
---ShopName nvarchar NOT NULL,
---ShopAdress nvarchar NOT NULL,
---ShopManagerID int FOREIGN KEY REFERENCES ShopManagers(ShopManagerID),
---ShopCity nvarchar NOT NULL, 
---ShopPhone int NOT NULL,
+
+
+
+INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
+VALUES ('Pull and Bear', 'המלאכה 6', 'רעננה', '059-951-0510');
+INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
+VALUES ('Pull and Bear', 'שדרות שבעת הכוכבים 8', 'הרצליה', '09-958-7176');
+INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
+VALUES ('Pull and Bear', 'זבוטינסקי 72', 'פתח תקווה', '03-603-2547');
+INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
+VALUES ('Adika', 'דרך מנחם בגין 132', 'תל אביב יפו', '03-800-1000');
+INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
+VALUES ('Adika', 'דיזנגוף 50', 'תל אביב יפו', '03-800-1000');
+INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
+VALUES ('Adika', 'בני ברמן', 'נתניה', '03-800-1000');
+
