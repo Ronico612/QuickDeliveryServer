@@ -34,7 +34,7 @@ namespace QuickDeliveryServerBL.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=QuickDelivery;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;");
             }
         }
 
@@ -57,12 +57,12 @@ namespace QuickDeliveryServerBL.Models
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.AllStatusOfOrders)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__AllStatus__Order__47DBAE45");
+                    .HasConstraintName("FK__AllStatus__Order__59063A47");
 
                 entity.HasOne(d => d.StatusOrder)
                     .WithMany(p => p.AllStatusOfOrders)
                     .HasForeignKey(d => d.StatusOrderId)
-                    .HasConstraintName("FK__AllStatus__Statu__48CFD27E");
+                    .HasConstraintName("FK__AllStatus__Statu__59FA5E80");
             });
 
             modelBuilder.Entity<AllTypesOfPrduct>(entity =>
@@ -78,12 +78,12 @@ namespace QuickDeliveryServerBL.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.AllTypesOfPrducts)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__AllTypesO__Produ__440B1D61");
+                    .HasConstraintName("FK__AllTypesO__Produ__5535A963");
 
                 entity.HasOne(d => d.ProductType)
                     .WithMany(p => p.AllTypesOfPrducts)
                     .HasForeignKey(d => d.ProductTypeId)
-                    .HasConstraintName("FK__AllTypesO__Produ__44FF419A");
+                    .HasConstraintName("FK__AllTypesO__Produ__5629CD9C");
             });
 
             modelBuilder.Entity<DelPerson>(entity =>
@@ -96,7 +96,7 @@ namespace QuickDeliveryServerBL.Models
                     .WithOne(p => p.DelPerson)
                     .HasForeignKey<DelPerson>(d => d.DelPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__DelPerson__DelPe__2C3393D0");
+                    .HasConstraintName("FK__DelPerson__DelPe__3D5E1FD2");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -114,17 +114,17 @@ namespace QuickDeliveryServerBL.Models
                 entity.HasOne(d => d.DelPerson)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.DelPersonId)
-                    .HasConstraintName("FK__Orders__DelPerso__3A81B327");
+                    .HasConstraintName("FK__Orders__DelPerso__4BAC3F29");
 
                 entity.HasOne(d => d.StatusOrder)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.StatusOrderId)
-                    .HasConstraintName("FK__Orders__StatusOr__3B75D760");
+                    .HasConstraintName("FK__Orders__StatusOr__4CA06362");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Orders__UserID__398D8EEE");
+                    .HasConstraintName("FK__Orders__UserID__4AB81AF0");
             });
 
             modelBuilder.Entity<OrderProduct>(entity =>
@@ -139,13 +139,13 @@ namespace QuickDeliveryServerBL.Models
                     .WithMany(p => p.OrderProducts)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderProd__Order__3E52440B");
+                    .HasConstraintName("FK__OrderProd__Order__4F7CD00D");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderProducts)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderProd__Produ__3F466844");
+                    .HasConstraintName("FK__OrderProd__Produ__5070F446");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -161,7 +161,7 @@ namespace QuickDeliveryServerBL.Models
                 entity.HasOne(d => d.Shop)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.ShopId)
-                    .HasConstraintName("FK__Products__ShopID__36B12243");
+                    .HasConstraintName("FK__Products__ShopID__47DBAE45");
             });
 
             modelBuilder.Entity<ProductType>(entity =>
@@ -170,10 +170,9 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.ProductTypeId).HasColumnName("ProductTypeID");
 
-                entity.Property(e => e.ProductType1)
+                entity.Property(e => e.ProductTypeName)
                     .IsRequired()
-                    .HasMaxLength(15)
-                    .HasColumnName("ProductType");
+                    .HasMaxLength(20);
             });
 
             modelBuilder.Entity<Shop>(entity =>
@@ -196,10 +195,14 @@ namespace QuickDeliveryServerBL.Models
                     .IsRequired()
                     .HasMaxLength(15);
 
+                entity.Property(e => e.ShopPhone)
+                    .IsRequired()
+                    .HasMaxLength(15);
+
                 entity.HasOne(d => d.ShopManager)
                     .WithMany(p => p.Shops)
                     .HasForeignKey(d => d.ShopManagerId)
-                    .HasConstraintName("FK__Shop__ShopManage__31EC6D26");
+                    .HasConstraintName("FK__Shop__ShopManage__4316F928");
             });
 
             modelBuilder.Entity<ShopManager>(entity =>
@@ -212,7 +215,7 @@ namespace QuickDeliveryServerBL.Models
                     .WithOne(p => p.ShopManager)
                     .HasForeignKey<ShopManager>(d => d.ShopManagerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ShopManag__ShopM__2F10007B");
+                    .HasConstraintName("FK__ShopManag__ShopM__403A8C7D");
             });
 
             modelBuilder.Entity<StatusOrder>(entity =>
@@ -228,7 +231,7 @@ namespace QuickDeliveryServerBL.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF803B04829")
+                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF8C8473FEB")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
