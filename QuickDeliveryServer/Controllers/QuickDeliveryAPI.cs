@@ -37,6 +37,13 @@ namespace QuickDeliveryServer.Controllers
             return context.Shops.ToList();
         }
 
+        [Route("GetProductTypes")]
+        [HttpGet]
+        public List<ProductType> GetProductTypes()
+        {
+            return context.ProductTypes.ToList();
+        }
+
 
     }       
 }

@@ -166,8 +166,21 @@ VALUES ('Dresses');
 INSERT INTO ProductType (ProductType)
 VALUES ('Skirts');
 
-
-
+ALTER TABLE ProductType ADD ProductTypeName nvarchar(20);
+ALTER TABLE ProductType drop column ProductType;
+update ProductType set ProductTypeName='Men' where ProductTypeID=1;
+update ProductType set ProductTypeName='Women' where ProductTypeID=2;
+update ProductType set ProductTypeName='Boys' where ProductTypeID=3;
+update ProductType set ProductTypeName='Girls' where ProductTypeID=4;
+update ProductType set ProductTypeName='Tops' where ProductTypeID=5;
+update ProductType set ProductTypeName='TShirts' where ProductTypeID=6;
+update ProductType set ProductTypeName='Jeans' where ProductTypeID=7;
+update ProductType set ProductTypeName='Dresses' where ProductTypeID=8;
+update ProductType set ProductTypeName='Skirts' where ProductTypeID=9;
+INSERT INTO ProductType (ProductTypeName)
+VALUES ('Jackets');
+ALTER TABLE ProductType
+ALTER COLUMN ProductTypeName nvarchar (20) NOT NULL
 
 
 INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)

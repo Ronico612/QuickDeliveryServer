@@ -13,7 +13,7 @@ namespace QuickDeliveryServerBL.Models
         }
 
         public int ProductTypeId { get; set; }
-        public string ProductType1 { get; set; }
+        public string ProductTypeName { get; set; }
 
         public virtual ICollection<AllTypesOfPrduct> AllTypesOfPrducts { get; set; }
     }
