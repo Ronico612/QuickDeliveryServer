@@ -212,12 +212,23 @@ INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
 VALUES ('טי-שירט ווש WHATEVER', 1, 5, 103.90);
 INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
 VALUES ('טי-שירט אוברסייז PALM SPRINGS', 1, 4, 79);
---לבדוק מידות 
+
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (1, 5);
-CREATE TABLE AllTypesOfPrduct(
-AllTypesOfPrductID int IDENTITY (1,1) PRIMARY KEY,
-ProductID int FOREIGN KEY REFERENCES Products(ProductID),
-ProductTypeID int FOREIGN KEY REFERENCES ProductType(ProductTypeID),
-);
+VALUES (1, 11);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (1, 2);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (2, 11);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (2, 2);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (3, 6);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (3, 2);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (4, 6);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (4, 2);
+
+--Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
 
