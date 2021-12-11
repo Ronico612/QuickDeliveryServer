@@ -179,6 +179,8 @@ update ProductType set ProductTypeName='Dresses' where ProductTypeID=8;
 update ProductType set ProductTypeName='Skirts' where ProductTypeID=9;
 INSERT INTO ProductType (ProductTypeName)
 VALUES ('Jackets');
+INSERT INTO ProductType (ProductTypeName)
+VALUES ('Pants');
 ALTER TABLE ProductType
 ALTER COLUMN ProductTypeName nvarchar (20) NOT NULL
 
@@ -195,4 +197,27 @@ INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
 VALUES ('Adika', 'דיזנגוף 50', 'תל אביב יפו', '03-800-1000');
 INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
 VALUES ('Adika', 'בני ברמן', 'נתניה', '03-800-1000');
+
+
+
+--מפה להריץ
+ALTER TABLE Products 
+ALTER COLUMN ProductPrice decimal(5,2) NOT NULL
+
+INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES ('מכנסי טרנינג BYE דיטייל רקום', 1, 5, 79.90);
+INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES ('מכנסי טרנינג טאי-דאי ספלאש', 1, 8, 99);
+INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES ('טי-שירט ווש WHATEVER', 1, 5, 103.90);
+INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES ('טי-שירט אוברסייז PALM SPRINGS', 1, 4, 79);
+--לבדוק מידות 
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (1, 5);
+CREATE TABLE AllTypesOfPrduct(
+AllTypesOfPrductID int IDENTITY (1,1) PRIMARY KEY,
+ProductID int FOREIGN KEY REFERENCES Products(ProductID),
+ProductTypeID int FOREIGN KEY REFERENCES ProductType(ProductTypeID),
+);
 
