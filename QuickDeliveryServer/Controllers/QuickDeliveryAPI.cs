@@ -39,9 +39,12 @@ namespace QuickDeliveryServer.Controllers
 
         [Route("GetProductTypes")]
         [HttpGet]
-        public List<ProductType> GetProductTypes()
+        public List<ProductType> GetProductTypes([FromQuery] int shopID)
         {
-            return context.ProductTypes.ToList();
+            return context.ProductTypes
+                .Include(pt => pt.AllTypesOfPrducts.Where(all => all.Product.ShopId == shopID))
+                .ThenInclude(apt => apt.Product)
+                .ToList();
         }
 
 

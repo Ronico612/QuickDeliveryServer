@@ -1,4 +1,6 @@
-﻿CREATE DATABASE QuickDelivery;
+﻿
+
+CREATE DATABASE QuickDelivery;
 Go
 
 USE QuickDelivery;
@@ -203,6 +205,8 @@ VALUES ('Adika', 'בני ברמן', 'נתניה', '03-800-1000');
 --מפה להריץ
 ALTER TABLE Products 
 ALTER COLUMN ProductPrice decimal(5,2) NOT NULL
+ALTER TABLE Products 
+ALTER COLUMN ProductName nvarchar(100) NOT NULL
 
 INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
 VALUES ('מכנסי טרנינג BYE דיטייל רקום', 1, 5, 79.90);
