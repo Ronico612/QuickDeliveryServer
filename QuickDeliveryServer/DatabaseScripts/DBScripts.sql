@@ -1,6 +1,4 @@
-﻿
-
-CREATE DATABASE QuickDelivery;
+﻿CREATE DATABASE QuickDelivery;
 Go
 
 USE QuickDelivery;
@@ -201,38 +199,51 @@ INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
 VALUES ('Adika', 'בני ברמן', 'נתניה', '03-800-1000');
 
 
-
---מפה להריץ
 ALTER TABLE Products 
 ALTER COLUMN ProductPrice decimal(5,2) NOT NULL
 ALTER TABLE Products 
 ALTER COLUMN ProductName nvarchar(100) NOT NULL
 
 INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('מכנסי טרנינג BYE דיטייל רקום', 1, 5, 79.90);
+VALUES ('מכנסי טרנינג BYE דיטייל רקום', 5, 5, 79.90);
 INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('מכנסי טרנינג טאי-דאי ספלאש', 1, 8, 99);
+VALUES ('מכנסי טרנינג טאי-דאי ספלאש', 5, 8, 99);
 INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('טי-שירט ווש WHATEVER', 1, 5, 103.90);
+VALUES ('טי-שירט ווש WHATEVER', 5, 5, 103.90);
 INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('טי-שירט אוברסייז PALM SPRINGS', 1, 4, 79);
+VALUES ('טי-שירט אוברסייז PALM SPRINGS', 5, 4, 79);
 
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (1, 11);
+VALUES (9, 11);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (1, 2);
+VALUES (9, 2);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (2, 11);
+VALUES (10, 11);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (2, 2);
+VALUES (10, 2);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (3, 6);
+VALUES (11, 6);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (3, 2);
+VALUES (11, 2);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (4, 6);
+VALUES (12, 6);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (4, 2);
+VALUES (12, 2);
+
+INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES ('סווטשירט אול-סקוורס טקסטורה צמרירית', 5, 12, 129);
+INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES ('מכנסי טרנינג סקרלט', 5, 14, 89);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (13, 6);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (13, 10);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (14, 6);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (14, 11);
+update AllTypesOfPrduct SET ProductTypeID = 4 WHERE AllTypesOfPrductID = 25
+update AllTypesOfPrduct SET ProductTypeID = 4 WHERE AllTypesOfPrductID = 27
 
 --Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
 

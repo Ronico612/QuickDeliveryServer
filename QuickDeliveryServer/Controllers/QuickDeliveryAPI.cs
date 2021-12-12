@@ -46,7 +46,5 @@ namespace QuickDeliveryServer.Controllers
                 .ThenInclude(apt => apt.Product)
                 .ToList();
         }
-
-
     }       
 }
