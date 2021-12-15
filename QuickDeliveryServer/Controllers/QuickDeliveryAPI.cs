@@ -41,10 +41,11 @@ namespace QuickDeliveryServer.Controllers
         [HttpGet]
         public List<ProductType> GetProductTypes([FromQuery] int shopID)
         {
-            return context.ProductTypes
+            List<ProductType> types = context.ProductTypes
                 .Include(pt => pt.AllTypesOfPrducts.Where(all => all.Product.ShopId == shopID))
                 .ThenInclude(apt => apt.Product)
                 .ToList();
+            return types;
         }
     }       
 }

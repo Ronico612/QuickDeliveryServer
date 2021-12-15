@@ -1,4 +1,7 @@
-﻿CREATE DATABASE QuickDelivery;
+﻿--drop database QuickDelivery
+--Go
+
+CREATE DATABASE QuickDelivery;
 Go
 
 USE QuickDelivery;
@@ -181,10 +184,9 @@ INSERT INTO ProductType (ProductTypeName)
 VALUES ('Jackets');
 INSERT INTO ProductType (ProductTypeName)
 VALUES ('Pants');
-ALTER TABLE ProductType
-ALTER COLUMN ProductTypeName nvarchar (20) NOT NULL
 
 
+select * from shop
 INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
 VALUES ('Pull and Bear', 'המלאכה 6', 'רעננה', '059-951-0510');
 INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
@@ -204,46 +206,55 @@ ALTER COLUMN ProductPrice decimal(5,2) NOT NULL
 ALTER TABLE Products 
 ALTER COLUMN ProductName nvarchar(100) NOT NULL
 
-INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('מכנסי טרנינג BYE דיטייל רקום', 5, 5, 79.90);
-INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('מכנסי טרנינג טאי-דאי ספלאש', 5, 8, 99);
-INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('טי-שירט ווש WHATEVER', 5, 5, 103.90);
-INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('טי-שירט אוברסייז PALM SPRINGS', 5, 4, 79);
+SET IDENTITY_INSERT Products ON;  
+GO  
+INSERT INTO Products (ProductID, ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES (1000, 'מכנסי טרנינג BYE דיטייל רקום', 5, 5, 79.90);
+INSERT INTO Products (ProductID, ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES (1001,'מכנסי טרנינג טאי-דאי ספלאש', 5, 8, 99);
+INSERT INTO Products (ProductID, ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES (1002,'טי-שירט ווש WHATEVER', 5, 5, 103.90);
+INSERT INTO Products (ProductID, ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES (1003,'טי-שירט אוברסייז PALM SPRINGS', 5, 4, 79);
+INSERT INTO Products (ProductID, ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES (1004,'סווטשירט אול-סקוורס טקסטורה צמרירית', 5, 12, 129);
+INSERT INTO Products (ProductID, ProductName, ShopID, CountProductInShop, ProductPrice)
+VALUES (1005,'מכנסי טרנינג סקרלט', 5, 14, 89);
+SET IDENTITY_INSERT Products OFF;  
+GO 
 
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (9, 11);
+VALUES (1000, 2);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (9, 2);
+VALUES (1000, 11);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (10, 11);
+VALUES (1001, 11);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (10, 2);
+VALUES (1001, 2);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (11, 6);
+VALUES (1002, 6);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (11, 2);
+VALUES (1002, 2);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (12, 6);
+VALUES (1003, 6);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (12, 2);
+VALUES (1003, 2);
 
-INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('סווטשירט אול-סקוורס טקסטורה צמרירית', 5, 12, 129);
-INSERT INTO Products (ProductName, ShopID, CountProductInShop, ProductPrice)
-VALUES ('מכנסי טרנינג סקרלט', 5, 14, 89);
+
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (13, 6);
+VALUES (1004, 6);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (13, 10);
+VALUES (1004, 10);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (14, 6);
+VALUES (1005, 6);
 INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
-VALUES (14, 11);
-update AllTypesOfPrduct SET ProductTypeID = 4 WHERE AllTypesOfPrductID = 25
-update AllTypesOfPrduct SET ProductTypeID = 4 WHERE AllTypesOfPrductID = 27
+VALUES (1005, 11);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (1004, 4);
+INSERT INTO AllTypesOfPrduct (ProductID, ProductTypeID)
+VALUES (1005, 5);
+
+--update AllTypesOfPrduct SET ProductTypeID = 4 WHERE AllTypesOfPrductID = 27
 
 --Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
 
