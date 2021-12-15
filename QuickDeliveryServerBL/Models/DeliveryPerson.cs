@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace QuickDeliveryServerBL.Models
 {
-    public partial class DelPerson
+    public partial class DeliveryPerson
     {
-        public DelPerson()
+        public DeliveryPerson()
         {
             Orders = new HashSet<Order>();
         }
 
-        public int DelPersonId { get; set; }
+        public int DeliveryPersonId { get; set; }
 
-        public virtual User DelPersonNavigation { get; set; }
+        public virtual User DeliveryPersonNavigation { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

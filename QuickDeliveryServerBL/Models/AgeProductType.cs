@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace QuickDeliveryServerBL.Models
 {
-    public partial class ProductType
+    public partial class AgeProductType
     {
-        public ProductType()
+        public AgeProductType()
         {
             Products = new HashSet<Product>();
         }
 
-        public int ProductTypeId { get; set; }
-        public string ProductTypeName { get; set; }
+        public int AgeProductTypeId { get; set; }
+        public string AgeProductTypeName { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }

@@ -28,7 +28,7 @@ namespace QuickDeliveryServerBL.Models
         public int? NumCode { get; set; }
         public int? ValidityCreditCard { get; set; }
 
-        public virtual DelPerson DelPerson { get; set; }
+        public virtual DeliveryPerson DeliveryPerson { get; set; }
         public virtual ShopManager ShopManager { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }

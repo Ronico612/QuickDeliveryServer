@@ -37,13 +37,24 @@ namespace QuickDeliveryServer.Controllers
             return context.Shops.ToList();
         }
 
-        [Route("GetProductTypes")]
+        [Route("GetAgeTypes")]
         [HttpGet]
-        public List<ProductType> GetProductTypes([FromQuery] int shopID)
+        public List<AgeProductType> GetAgeTypes([FromQuery] int shopID)
+        {
+            List<AgeProductType> types = context.AgeProductTypes
+                .Include(apt => apt.Products.Where(p => p.ShopId == shopID))
+              //  .ThenInclude(apt => apt.Product)
+                .ToList();
+            return types;
+        }
+
+        [Route("GetProductTypesForSelectedAge")]
+        [HttpGet]
+        public List<ProductType> GetProductTypesForSelectedAge([FromQuery] int ageTypeProductID, int shopID)
         {
             List<ProductType> types = context.ProductTypes
-                .Include(pt => pt.AllTypesOfPrducts.Where(all => all.Product.ShopId == shopID))
-                .ThenInclude(apt => apt.Product)
+                .Include(pt => pt.Products.Where(p => p.ShopId == shopID && p.AgeProductTypeId == ageTypeProductID))
+                //  .ThenInclude(apt => apt.Product)
                 .ToList();
             return types;
         }
