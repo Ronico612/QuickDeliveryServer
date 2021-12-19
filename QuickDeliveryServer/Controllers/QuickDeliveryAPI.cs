@@ -34,7 +34,11 @@ namespace QuickDeliveryServer.Controllers
         [HttpGet]
         public List<Shop> GetShops()
         {
-            return context.Shops.ToList();
+            return context.Shops
+                .Include(s => s.Products)
+                .ThenInclude(p => p.AgeProductType)
+                .Include(s => s.Products)
+                .ThenInclude(p => p.ProductType).ToList();
         }
 
         [Route("GetAgeTypes")]
