@@ -9,20 +9,19 @@ Go
 
 CREATE TABLE Users(
 UserID int IDENTITY (1,1) PRIMARY KEY,
-UserFName nvarchar (15) NOT NULL,
-UserLName nvarchar (15) NOT NULL,
-Username nvarchar (25) NOT NULL,
-UserPassword nvarchar (25) NOT NULL,
+UserFName nvarchar (30) NOT NULL,
+UserLName nvarchar (30) NOT NULL,
+UserPassword nvarchar (15) NOT NULL,
 UserPhone nvarchar (20) NOT NULL,
 UserEmail nvarchar (30) NOT NULL UNIQUE,
 UserBirthDate datetime,
 IsAdmin bit NOT NULL default(0),
 HasDiscount bit default(0),
-UserAdress nvarchar (30) NOT NULL,
+UserAddress nvarchar (30) NOT NULL,
 UserCity nvarchar (30) NOT NULL,
-NumCreditCard int,
-NumCode int,
-ValidityCreditCard int,
+NumCreditCard nvarchar (30) NOT NULL,
+NumCode nvarchar (3) NOT NULL,
+ValidityCreditCard datetime
 );
 
 

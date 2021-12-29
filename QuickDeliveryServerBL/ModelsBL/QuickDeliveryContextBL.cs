@@ -10,6 +10,10 @@ namespace QuickDeliveryServerBL.Models
 {
     public partial class QuickDeliveryContext : DbContext
     {
-
+        public User Login(string email, string pswd)
+        {
+            User user = this.Users.Where(u => u.UserEmail == email && u.UserPassword == pswd).FirstOrDefault();
+            return user;
+        }
     }
 }

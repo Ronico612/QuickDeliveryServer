@@ -237,14 +237,22 @@ namespace QuickDeliveryServerBL.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF8D4C482AB")
+                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF862DF44F0")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.Property(e => e.HasDiscount).HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.UserAdress)
+                entity.Property(e => e.NumCode)
+                    .IsRequired()
+                    .HasMaxLength(3);
+
+                entity.Property(e => e.NumCreditCard)
+                    .IsRequired()
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.UserAddress)
                     .IsRequired()
                     .HasMaxLength(30);
 
@@ -260,25 +268,23 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.UserFname)
                     .IsRequired()
-                    .HasMaxLength(15)
+                    .HasMaxLength(30)
                     .HasColumnName("UserFName");
 
                 entity.Property(e => e.UserLname)
                     .IsRequired()
-                    .HasMaxLength(15)
+                    .HasMaxLength(30)
                     .HasColumnName("UserLName");
 
                 entity.Property(e => e.UserPassword)
                     .IsRequired()
-                    .HasMaxLength(25);
+                    .HasMaxLength(15);
 
                 entity.Property(e => e.UserPhone)
                     .IsRequired()
                     .HasMaxLength(20);
 
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(25);
+                entity.Property(e => e.ValidityCreditCard).HasColumnType("datetime");
             });
 
             OnModelCreatingPartial(modelBuilder);
