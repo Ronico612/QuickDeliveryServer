@@ -66,25 +66,20 @@ namespace QuickDeliveryServer.Controllers
             }
         }
 
-        // לתקן
         [Route("RegisterUser")]
         [HttpPost]
-        public User RegisterUser([FromBody] User user)
+        public bool RegisterUser([FromBody] User user)
         {
             bool success = context.Register(user);
-            //Check user name and password
             if (success)
             {
-                
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-
-                return user;
             }
             else
             {
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-                return null;
             }
+            return success;
         }
         
     }       
