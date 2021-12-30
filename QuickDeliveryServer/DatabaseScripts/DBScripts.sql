@@ -163,6 +163,9 @@ VALUES (1005,'מכנסי טרנינג סקרלט', 5, 3, 4, 14, 89);
 SET IDENTITY_INSERT Products OFF;  
 GO
 
-
+insert users (UserFName, UserLName, UserPassword, UserPhone, UserEmail, UserBirthDate, IsAdmin, HasDiscount,
+UserAddress, UserCity, NumCreditCard, NumCode, ValidityCreditCard) values 
+('Roni', 'Cohen', '1234', '099989898', 'ronico612@gmail.com', '6-DEC-2004',1, 0, 'Address', 'Hod Hasharon', '12345', '234', '1-DEC-2040')
+Go
 --Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
 

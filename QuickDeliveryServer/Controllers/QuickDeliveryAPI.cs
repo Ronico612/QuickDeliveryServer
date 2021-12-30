@@ -71,21 +71,18 @@ namespace QuickDeliveryServer.Controllers
         [HttpPost]
         public User RegisterUser([FromBody] User user)
         {
-            User newUser = user;
-
+            bool success = context.Register(user);
             //Check user name and password
-            if (user != null)
+            if (success)
             {
-                HttpContext.Session.SetObject("theUser", user);
-
+                
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
-                //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
                 return user;
             }
             else
             {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 return null;
             }
         }

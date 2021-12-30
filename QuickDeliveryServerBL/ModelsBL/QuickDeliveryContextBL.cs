@@ -15,5 +15,21 @@ namespace QuickDeliveryServerBL.Models
             User user = this.Users.Where(u => u.UserEmail == email && u.UserPassword == pswd).FirstOrDefault();
             return user;
         }
+
+        public bool Register(User u)
+        {
+            try
+            {
+                this.Users.Add(u);
+                this.SaveChanges();
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            
+        }
     }
 }
