@@ -1,5 +1,5 @@
-﻿--drop database QuickDelivery
---Go
+﻿drop database QuickDelivery
+Go
 
 CREATE DATABASE QuickDelivery;
 Go
