@@ -42,6 +42,14 @@ namespace QuickDeliveryServer.Controllers
                 .ThenInclude(p => p.ProductType).ToList();
         }
 
+        [Route("IsUserEmailExist")]
+        [HttpGet]
+        public bool IsUserEmailExist([FromQuery] string email)
+        {
+            User user = context.Users.Where(u => u.UserEmail == email).FirstOrDefault();
+            return user != null;
+        }
+
         [Route("Login")]
         [HttpGet]
         public User Login([FromQuery] string email, [FromQuery] string pass)
