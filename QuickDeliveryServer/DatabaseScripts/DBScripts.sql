@@ -1,5 +1,5 @@
-﻿drop database QuickDelivery
-Go
+﻿--drop database QuickDelivery
+--Go
 
 CREATE DATABASE QuickDelivery;
 Go
@@ -78,13 +78,14 @@ UserID int FOREIGN KEY REFERENCES Users(UserID),
 DeliveryPersonID int FOREIGN KEY REFERENCES DeliveryPersons(DeliveryPersonID),
 StatusOrderID int FOREIGN KEY REFERENCES StatusOrder(StatusOrderID),
 OrderDate datetime NOT NULL,
+TotalPrice decimal(9,2)
 );
 
 CREATE TABLE OrderProducts(
 OrderID int FOREIGN KEY REFERENCES Orders(OrderID),
 ProductID int FOREIGN KEY REFERENCES Products(ProductID),
 Quantity int NOT NULL,
-Price int,
+Price decimal(9,2),
 CONSTRAINT PK_OrderProducts PRIMARY KEY (OrderID,ProductID)
 );
 
@@ -167,5 +168,6 @@ insert users (UserFName, UserLName, UserPassword, UserPhone, UserEmail, UserBirt
 UserAddress, UserCity, NumCreditCard, NumCode, ValidityCreditCard) values 
 ('Roni', 'Cohen', '1234', '099989898', 'ronico612@gmail.com', '6-DEC-2004',1, 0, 'Address', 'Hod Hasharon', '12345', '234', '1-DEC-2040')
 Go
+
 --Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
 

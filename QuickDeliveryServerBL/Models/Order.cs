@@ -18,6 +18,7 @@ namespace QuickDeliveryServerBL.Models
         public int? DeliveryPersonId { get; set; }
         public int? StatusOrderId { get; set; }
         public DateTime OrderDate { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         public virtual DeliveryPerson DeliveryPerson { get; set; }
         public virtual StatusOrder StatusOrder { get; set; }

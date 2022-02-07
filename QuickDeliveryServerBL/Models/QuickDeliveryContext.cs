@@ -99,6 +99,8 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.StatusOrderId).HasColumnName("StatusOrderID");
 
+                entity.Property(e => e.TotalPrice).HasColumnType("decimal(9, 2)");
+
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.HasOne(d => d.DeliveryPerson)
@@ -124,6 +126,8 @@ namespace QuickDeliveryServerBL.Models
                 entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
+
+                entity.Property(e => e.Price).HasColumnType("decimal(9, 2)");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderProducts)
