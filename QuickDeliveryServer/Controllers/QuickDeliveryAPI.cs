@@ -89,6 +89,54 @@ namespace QuickDeliveryServer.Controllers
             }
             return success;
         }
+
+        [Route("PostNewOrder")]
+        [HttpPost]
+        public int PostNewOrder([FromBody] Order order)
+        {
+
+            int newOrderID = context.NewOrder(order);
+            if (newOrderID != 0)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return newOrderID;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            }
+            return 0;
+        }
+
+        [Route("PostNewOrderProduct")]
+        [HttpPost]
+        public bool PostNewOrderProduct([FromBody] OrderProduct orderProduct)
+        {
+            bool success = context.NewOrderProduct(orderProduct);
+            if (success)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            }
+            return success;
+        }
+
+        [Route("RemoveProductCount")]
+        [HttpGet]
+        public bool RemoveProductCount([FromQuery] int productID, int countToRemove)
+        {
+            return context.RemoveProductCount(productID, countToRemove);
+        }
+
+        [Route("StatusOrderOrRemove")]
+        [HttpGet]
+        public void StatusOrderOrRemove([FromQuery] bool success, int orderID)
+        {
+            context.StatusOrderOrRemove(success, orderID);
+        }
         
     }       
 }

@@ -1,6 +1,9 @@
 ﻿--drop database QuickDelivery
 --Go
 
+--USE GameHighScores;
+--GO
+
 CREATE DATABASE QuickDelivery;
 Go
 
