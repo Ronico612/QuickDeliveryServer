@@ -89,7 +89,14 @@ namespace QuickDeliveryServerBL.Models
                 if (success)
                     order.StatusOrderId = 1;// waiting
                 else
+                {
+                    List<OrderProduct> orderProducts = this.OrderProducts.Where(op => op.OrderId == orderID).ToList();
+                    foreach (OrderProduct orderProduct in orderProducts)
+                    {
+                        this.OrderProducts.Remove(orderProduct);
+                    }
                     this.Orders.Remove(order);
+                }
                 this.SaveChanges();
             }
             catch (Exception e)
