@@ -24,12 +24,6 @@ namespace QuickDeliveryServer.Controllers
         }
         #endregion
 
-        [Route("Test")]
-        [HttpGet]
-        public string Test()
-        {
-            return "hello Roni!";
-        }
 
         [Route("GetShops")]
         [HttpGet]
@@ -137,6 +131,24 @@ namespace QuickDeliveryServer.Controllers
         {
             context.StatusOrderOrRemove(success, orderID);
         }
-        
+
+        [Route("UpdateUser")]
+        [HttpPost]
+        public bool UpdateUser([FromBody] User currentUser, [FromQuery] string phone, string address, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
+        {
+            bool isUdatedUser = context.UpdateUser(currentUser, phone, address, city, numCreditCard, numCode, validityCreditCard);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isUdatedUser;
+        }
+
+        [Route("GetUserOrders")]
+        [HttpGet]
+        public List<Order> GetUserOrders([FromQuery] int userId)
+        {
+            return context.Orders.Where(o => o.UserId == userId)
+                .Include(op => op.OrderProducts)
+                .ThenInclude(p => p.Product)
+                .ThenInclude(s => s.Shop).ToList();
+        }
     }       
 }

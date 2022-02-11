@@ -105,6 +105,27 @@ namespace QuickDeliveryServerBL.Models
             }
         }
 
-        
+        public bool UpdateUser(User currentUser, string phone, string address, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
+        {
+            try
+            {
+                User user = this.Users.Where(u => u.UserId == currentUser.UserId).FirstOrDefault();
+                user.UserPhone = phone;
+                user.UserAddress = address;
+                user.UserCity = city;
+                user.NumCreditCard = numCreditCard;
+                user.NumCode = numCode;
+                user.ValidityCreditCard = validityCreditCard;
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+
     }
 }

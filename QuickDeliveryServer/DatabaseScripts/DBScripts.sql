@@ -164,7 +164,12 @@ INSERT INTO Products (ProductID, ProductName, ShopID, ProductTypeID, AgeProductT
 VALUES (1004,'סווטשירט אול-סקוורס טקסטורה צמרירית', 5, 7, 4, 12, 129);
 INSERT INTO Products (ProductID, ProductName, ShopID, ProductTypeID, AgeProductTypeID, CountProductInShop, ProductPrice)
 VALUES (1005,'מכנסי טרנינג סקרלט', 5, 3, 4, 14, 89);
-SET IDENTITY_INSERT Products OFF;  
+INSERT INTO Products (ProductID, ProductName, ShopID, ProductTypeID, AgeProductTypeID, CountProductInShop, ProductPrice)
+VALUES (1006, 'גינס HIGH WAIST בגזרה ישרה', 2, 4, 2, 100, 199.00 );
+INSERT INTO Products (ProductID, ProductName, ShopID, ProductTypeID, AgeProductTypeID, CountProductInShop, ProductPrice)
+VALUES (1007,'טי שירט BURGER KING', 2, 2, 2, 80, 99.90);
+INSERT INTO Products (ProductID, ProductName, ShopID, ProductTypeID, AgeProductTypeID, CountProductInShop, ProductPrice)
+VALUES (1008,'עליונית BASIC עם כפתורים', 2, 7, 2, 100, 199.00); 
 GO
 
 insert users (UserFName, UserLName, UserPassword, UserPhone, UserEmail, UserBirthDate, IsAdmin, HasDiscount,
