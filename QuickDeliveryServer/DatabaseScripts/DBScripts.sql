@@ -48,6 +48,7 @@ ShopAdress nvarchar (30) NOT NULL,
 ShopCity nvarchar (30) NOT NULL,
 ShopPhone nvarchar (30) NOT NULL,
 ShopManagerID int FOREIGN KEY REFERENCES ShopManagers(ShopManagerID),
+IsDeleted bit NOT NULL default(0),
 );
 
 CREATE TABLE StatusOrder(
@@ -73,6 +74,7 @@ ProductTypeID int FOREIGN KEY REFERENCES ProductType(ProductTypeID),
 AgeProductTypeID int FOREIGN KEY REFERENCES AgeProductType(AgeProductTypeID),
 CountProductInShop int NOT NULL,
 ProductPrice decimal(9,2) NOT NULL,
+IsDeleted bit NOT NULL default(0),
 );
 
 CREATE TABLE Orders(
@@ -81,7 +83,9 @@ UserID int FOREIGN KEY REFERENCES Users(UserID),
 DeliveryPersonID int FOREIGN KEY REFERENCES DeliveryPersons(DeliveryPersonID),
 StatusOrderID int FOREIGN KEY REFERENCES StatusOrder(StatusOrderID),
 OrderDate datetime NOT NULL,
-TotalPrice decimal(9,2)
+TotalPrice decimal(9,2),
+OrderAddress nvarchar (30) NOT NULL,
+OrderCity nvarchar (30) NOT NULL,
 );
 
 CREATE TABLE OrderProducts(
@@ -174,8 +178,14 @@ GO
 
 insert users (UserFName, UserLName, UserPassword, UserPhone, UserEmail, UserBirthDate, IsAdmin, HasDiscount,
 UserAddress, UserCity, NumCreditCard, NumCode, ValidityCreditCard) values 
-('Roni', 'Cohen', '1234', '099989898', 'ronico612@gmail.com', '6-DEC-2004',1, 0, 'Address', 'Hod Hasharon', '12345', '234', '1-DEC-2040')
+('Roni', 'Cohen', '1234', '099989898', 'ronico612@gmail.com', '6-DEC-2004',1, 0, 'Kinor 6', 'Hod Hasharon', '9999999999999999', '234', '1-DEC-2040')
 Go
+
+insert ShopManagers(ShopManagerID, Bank, Branch, AccountNumber)
+values (1, 0,0,0);
+
+UPDATE Shop set ShopManagerID = 1 
+Where ShopID = 5;
 
 --Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
 
