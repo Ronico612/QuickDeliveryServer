@@ -126,6 +126,56 @@ namespace QuickDeliveryServerBL.Models
             }
         }
 
+        public bool UpdateProduct(int productId, string productName, string count, string price, int ageProductTypeId, int productTypeId)
+        {
+            try
+            {
+                Product p = this.Products.Where(pp => pp.ProductId == productId).FirstOrDefault();
+                p.ProductName = productName;
+                p.CountProductInShop = int.Parse(count);
+                p.ProductPrice = Decimal.Parse(price);
+                p.AgeProductTypeId = ageProductTypeId;
+                p.ProductTypeId = productTypeId;
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
 
+        public bool DeleteProduct(int productId)
+        {
+            try
+            {
+                Product p = this.Products.Where(pp => pp.ProductId == productId).FirstOrDefault();
+                p.IsDeleted = true;
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+
+        public int AddProduct(Product p)
+        {
+            try
+            {
+                this.Products.Add(p);
+                this.SaveChanges();
+                return p.ProductId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
+            }
+        }
     }
 }

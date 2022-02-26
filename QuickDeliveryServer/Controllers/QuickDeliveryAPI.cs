@@ -32,7 +32,7 @@ namespace QuickDeliveryServer.Controllers
             return context.Shops
                 .Include(s => s.Products)
                 .ThenInclude(p => p.AgeProductType)
-                .Include(s => s.Products)
+                .Include(s => s.Products) 
                 .ThenInclude(p => p.ProductType).ToList();
         }
 
@@ -148,7 +148,62 @@ namespace QuickDeliveryServer.Controllers
             return context.Orders.Where(o => o.UserId == userId)
                 .Include(op => op.OrderProducts)
                 .ThenInclude(p => p.Product)
-                .ThenInclude(s => s.Shop).ToList();
+                .ThenInclude(s => s.Shop)
+                .Include(u => u.User).ToList();
         }
+
+        [Route("GetShopOrders")]
+        [HttpGet]
+        public List<Order> GetShopOrders([FromQuery] int shopId)
+        {
+            return context.Orders
+            .Include(op => op.OrderProducts)
+            .ThenInclude(p => p.Product)
+            .ThenInclude(s => s.Shop)
+            .Include(u => u.User)
+            .Where(os => os.OrderProducts.Any(x => x.Product.ShopId == shopId)).ToList();
+        }
+
+        [Route("GetAgeProductTypes")]
+        [HttpGet]
+        public List<AgeProductType> GetAgeProductTypes()
+        {
+            return context.AgeProductTypes.ToList();
+        }
+
+        [Route("GetProductTypes")]
+        [HttpGet]
+        public List<ProductType> GetProductTypes()
+        {
+            return context.ProductTypes.ToList();
+        }
+
+        [Route("UpdateProduct")]
+        [HttpGet]
+        public bool UpdateProduct([FromQuery] int productId, string productName, string count, string price, int ageProductTypeId, int productTypeId)
+        {
+            bool isUdatedProduct = context.UpdateProduct(productId, productName, count, price, ageProductTypeId, productTypeId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isUdatedProduct;
+        }
+
+        [Route("AddProduct")]
+        [HttpPost]
+        public int AddProduct([FromBody] Product product)
+        {
+            int productId = context.AddProduct(product);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return productId;
+        }
+
+        [Route("DeleteProduct")]
+        [HttpGet]
+        public bool DeleteProduct([FromQuery] int productId)
+        {
+            bool isDeleted = context.DeleteProduct(productId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isDeleted;
+        }
+        
     }       
 }
