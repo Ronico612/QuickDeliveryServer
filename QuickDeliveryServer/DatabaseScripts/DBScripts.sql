@@ -36,9 +36,9 @@ DeliveryPersonID int PRIMARY KEY FOREIGN KEY REFERENCES Users(UserID),
 
 CREATE TABLE ShopManagers(
 ShopManagerID int PRIMARY KEY FOREIGN KEY REFERENCES Users(UserID),
-Bank int NOT NULL,
-Branch int NOT NULL,
-AccountNumber int NOT NULL,
+Bank int NULL,
+Branch int NULL,
+AccountNumber int NULL,
 );
 
 CREATE TABLE Shop(
@@ -187,5 +187,11 @@ values (1, 0,0,0);
 UPDATE Shop set ShopManagerID = 1 
 Where ShopID = 5;
 
+--DELETE FROM Products WHERE ProductID=2021;
+--DELETE FROM Shop WHERE ShopID=8;
+--DELETE FROM ShopManagers WHERE ShopManagerID=2;
+
+
 --Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
+
 

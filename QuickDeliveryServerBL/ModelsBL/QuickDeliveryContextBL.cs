@@ -177,5 +177,125 @@ namespace QuickDeliveryServerBL.Models
                 return -1;
             }
         }
+
+        public int AddShopManager(string shopManagerEmail)
+        {
+            try
+            {
+                User user = this.Users.Where(u => u.UserEmail == shopManagerEmail).FirstOrDefault();
+                ShopManager sm = new ShopManager();
+                sm.ShopManagerId = user.UserId;
+                this.ShopManagers.Add(sm);
+                this.SaveChanges();
+                return sm.ShopManagerId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
+            }
+        }
+
+        public int AddShop(Shop s)
+        {
+            try
+            {
+                this.Shops.Add(s);
+                this.SaveChanges();
+                return s.ShopId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
+            }
+        }
+
+        public bool UpdateShop(int shopId, string shopName, string shopAdress, string shopCity, string shopPhone, int shopManagerId)
+        {
+            try
+            {
+                Shop s = this.Shops.Where(ss => ss.ShopId == shopId).FirstOrDefault();
+                s.ShopName = shopName;
+                s.ShopAdress = shopAdress;
+                s.ShopCity = shopCity;
+                s.ShopPhone = shopPhone;
+                s.ShopManagerId = shopManagerId;
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public bool DeleteShopManager(int shopManagerId)
+        {
+            try
+            {
+                ShopManager shopManager = this.ShopManagers.Where(sm => sm.ShopManagerId == shopManagerId).FirstOrDefault();
+                this.ShopManagers.Remove(shopManager);
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public bool DeleteShop(int shopId)
+        {
+            try
+            {
+                Shop s = this.Shops.Where(ss => ss.ShopId == shopId).FirstOrDefault();
+                s.IsDeleted = true;
+                s.ShopManagerId = null;
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public int AddDeliveryPerson(string dpEmail)
+        {
+            try
+            {
+                User user = this.Users.Where(u => u.UserEmail == dpEmail).FirstOrDefault();
+                DeliveryPerson dp = new DeliveryPerson();
+                dp.DeliveryPersonId = user.UserId;
+                this.DeliveryPersons.Add(dp);
+                this.SaveChanges();
+                return dp.DeliveryPersonId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
+            }
+        }
+
+        public bool DeleteDeliveryPerson(int dpId)
+        {
+            try
+            {
+                DeliveryPerson deliveryPerson = this.DeliveryPersons.Where(dp => dp.DeliveryPersonId == dpId).FirstOrDefault();
+                this.DeliveryPersons.Remove(deliveryPerson);
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
     }
 }

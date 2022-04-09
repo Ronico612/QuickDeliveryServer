@@ -204,6 +204,90 @@ namespace QuickDeliveryServer.Controllers
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             return isDeleted;
         }
-        
+
+        [Route("GetUser")]
+        [HttpGet]
+        public User GetUser([FromQuery] int userId)
+        {
+            User user = context.Users.Where(u=> u.UserId == userId).FirstOrDefault();
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return user;
+        }
+
+        [Route("AddShopManager")]
+        [HttpGet]
+        public int AddShopManager([FromQuery] string shopManagerEmail)
+        {
+            int userId = context.AddShopManager(shopManagerEmail);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return userId;
+        }
+
+        [Route("AddShop")]
+        [HttpPost]
+        public int AddShop([FromBody] Shop shop)
+        {
+            int shopId = context.AddShop(shop);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return shopId;
+        }
+
+        [Route("UpdateShop")]
+        [HttpGet]
+        public bool UpdateShop([FromQuery] int shopId, string shopName, string shopAdress, string shopCity, string shopPhone, int shopManagerId)
+        {
+            bool isUdatedShop = context.UpdateShop(shopId, shopName, shopAdress, shopCity, shopPhone, shopManagerId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isUdatedShop;
+        }
+
+        [Route("DeleteShopManager")]
+        [HttpGet]
+        public bool DeleteShopManager([FromQuery] int shopManagerId)
+        {
+            bool isDeleted = context.DeleteShopManager(shopManagerId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isDeleted;
+        }
+
+        [Route("DeleteShop")]
+        [HttpGet]
+        public bool DeleteShop([FromQuery] int shopId)
+        {
+            bool isDeleted = context.DeleteShop(shopId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isDeleted;
+        }
+
+        [Route("GetDeliveryPersons")]
+        [HttpGet]
+        public List<User> GetDeliveryPersons()
+        {
+            List<DeliveryPerson> list = context.DeliveryPersons.ToList();
+            List<User> users = new List<User>();
+            foreach (DeliveryPerson dp in list)
+            {
+                users.Add(context.Users.Where(u => u.UserId == dp.DeliveryPersonId).FirstOrDefault());
+            }
+            return users;
+        }
+
+        [Route("AddDeliveryPerson")]
+        [HttpGet]
+        public int AddDeliveryPerson([FromQuery] string dpEmail)
+        {
+            int userId = context.AddDeliveryPerson(dpEmail);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return userId;
+        }
+
+        [Route("DeleteDeliveryPerson")]
+        [HttpGet]
+        public bool DeleteDeliveryPerson([FromQuery] int dpId)
+        {
+            bool isDeleted = context.DeleteDeliveryPerson(dpId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isDeleted;
+        }
     }       
 }
