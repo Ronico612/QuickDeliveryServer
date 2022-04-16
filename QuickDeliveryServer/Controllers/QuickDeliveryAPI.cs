@@ -289,5 +289,61 @@ namespace QuickDeliveryServer.Controllers
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             return isDeleted;
         }
+
+        [Route("IsDeliveyPerson")]
+        [HttpGet]
+        public bool IsDeliveyPerson(int userId)
+        {
+            DeliveryPerson dp = context.DeliveryPersons.Where(d => d.DeliveryPersonId == userId).FirstOrDefault();
+            if (dp == null)
+                return false;
+            return true;
+        }
+
+        [Route("GetWaitingOrders")]
+        [HttpGet]
+        public List<Order> GetWaitingOrders()
+        {
+            return context.Orders.Where(os => os.StatusOrder.StatusOrderId == 1)
+           .Include(op => op.OrderProducts)
+           .ThenInclude(p => p.Product)
+           .ThenInclude(s => s.Shop)
+           .Include(u => u.User)
+           .ToList();
+        }
+
+        [Route("UpdateStatusOrder")]
+        [HttpGet]
+        public bool UpdateStatusOrder(int orderId, int userId, int statusId)
+        {
+            bool isUpdated = context.UpdateStatusOrder(orderId, userId, statusId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isUpdated;
+        }
+
+        [Route("GetApprovedOrTakenOrders")]
+        [HttpGet]
+        public List<Order> GetApprovedOrTakenOrders(int deliveryPersonId)
+        {
+            return context.Orders.Where(os => (os.StatusOrder.StatusOrderId == 2 || os.StatusOrder.StatusOrderId == 3) && os.DeliveryPersonId == deliveryPersonId)
+           .Include(op => op.OrderProducts)
+           .ThenInclude(p => p.Product)
+           .ThenInclude(s => s.Shop)
+           .Include(u => u.User)
+           .ToList();
+        }
+
+        [Route("GetHistoryDeliveryPersonOrders")]
+        [HttpGet]
+        public List<Order> GetHistoryDeliveryPersonOrders(int deliveryPersonId)
+        {
+            return context.Orders.Where(os => os.StatusOrder.StatusOrderId == 4 && os.DeliveryPersonId == deliveryPersonId)
+           .Include(op => op.OrderProducts)
+           .ThenInclude(p => p.Product)
+           .ThenInclude(s => s.Shop)
+           .Include(u => u.User)
+           .OrderByDescending(o => o.OrderId)
+           .ToList();
+        }
     }       
 }

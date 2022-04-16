@@ -297,5 +297,23 @@ namespace QuickDeliveryServerBL.Models
                 return false;
             }
         }
+
+        public bool UpdateStatusOrder(int orderId, int userId, int statusId)
+        {
+            try
+            {
+                Order order = this.Orders.Where(o => o.OrderId == orderId).FirstOrDefault();
+                order.StatusOrderId = statusId;
+                if (statusId == 2)
+                    order.DeliveryPersonId = userId;
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
     }
 }
