@@ -345,5 +345,23 @@ namespace QuickDeliveryServer.Controllers
            .OrderByDescending(o => o.OrderId)
            .ToList();
         }
+
+        [Route("GetStatusOrderDate")]
+        [HttpGet]
+        public DateTime GetStatusOrderDate(int orderId, int statusId)
+        {
+            AllStatusOfOrder allStatusOfOrder = context.AllStatusOfOrders.Where(s => s.OrderId == orderId && s.StatusOrderId == statusId).FirstOrDefault();
+            if (allStatusOfOrder == null)
+                return DateTime.MinValue;
+            return (DateTime)allStatusOfOrder.StatusTime;
+        }
+
+        [Route("GetUsers")]
+        [HttpGet]
+        public List<User> GetUsers()
+        {
+            return context.Users.ToList();
+        }
+
     }       
 }

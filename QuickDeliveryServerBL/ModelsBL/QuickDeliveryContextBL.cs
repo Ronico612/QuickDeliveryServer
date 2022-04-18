@@ -306,6 +306,14 @@ namespace QuickDeliveryServerBL.Models
                 order.StatusOrderId = statusId;
                 if (statusId == 2)
                     order.DeliveryPersonId = userId;
+                if (statusId > 1) // waiting
+                {
+                    AllStatusOfOrder allStatusOfOrder = new AllStatusOfOrder();
+                    allStatusOfOrder.OrderId = orderId;
+                    allStatusOfOrder.StatusOrderId = statusId;
+                    allStatusOfOrder.StatusTime = DateTime.Now;
+                    this.AllStatusOfOrders.Add(allStatusOfOrder);
+                }
                 this.SaveChanges();
                 return true;
             }
@@ -315,5 +323,7 @@ namespace QuickDeliveryServerBL.Models
                 return false;
             }
         }
+
+       
     }
 }
