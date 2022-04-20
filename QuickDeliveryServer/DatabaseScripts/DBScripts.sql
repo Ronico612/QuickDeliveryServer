@@ -187,10 +187,6 @@ values (1, 0,0,0);
 UPDATE Shop set ShopManagerID = 1 
 Where ShopID = 5;
 
---DELETE FROM Products WHERE ProductID>=2029;
---DELETE FROM Shop WHERE ShopID=8;
---DELETE FROM ShopManagers WHERE ShopManagerID=2;
-
 
 --Scaffold-Dbcontext "Server=localhost\sqlexpress03;Database=QuickDelivery;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
 
