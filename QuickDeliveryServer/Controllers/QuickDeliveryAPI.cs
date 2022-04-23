@@ -365,7 +365,6 @@ namespace QuickDeliveryServer.Controllers
 
         [Route("UploadProductImage")]
         [HttpPost]
-
         public async Task<IActionResult> UploadProductImage(IFormFile file)
         {
             User user = HttpContext.Session.GetObject<User>("theUser");
@@ -380,6 +379,39 @@ namespace QuickDeliveryServer.Controllers
                 try
                 {
                     var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ProductPhotos", file.FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+
+                    return Ok(new { length = file.Length, name = file.FileName });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return BadRequest();
+                }
+            }
+            return Forbid();
+        }
+
+        [Route("UploadShopImage")]
+        [HttpPost]
+        public async Task<IActionResult> UploadShopImage(IFormFile file)
+        {
+            User user = HttpContext.Session.GetObject<User>("theUser");
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (user != null)
+            {
+                if (file == null)
+                {
+                    return BadRequest();
+                }
+
+                try
+                {
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ShopsPhotos", file.FileName);
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
