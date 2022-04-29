@@ -5,22 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\NewFolder1\**" />
-    <Content Remove="wwwroot\NewFolder1\**" />
-    <EmbeddedResource Remove="wwwroot\NewFolder1\**" />
-    <None Remove="wwwroot\NewFolder1\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\QuickDeliveryServerBL\QuickDeliveryServerBL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTO\" />
   </ItemGroup>
 
 </Project>
