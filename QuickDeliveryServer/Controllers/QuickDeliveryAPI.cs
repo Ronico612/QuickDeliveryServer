@@ -292,12 +292,12 @@ namespace QuickDeliveryServer.Controllers
 
         [Route("IsDeliveyPerson")]
         [HttpGet]
-        public bool IsDeliveyPerson(int userId)
+        public DeliveryPerson IsDeliveyPerson(int userId)
         {
-            DeliveryPerson dp = context.DeliveryPersons.Where(d => d.DeliveryPersonId == userId).FirstOrDefault();
-            if (dp == null)
-                return false;
-            return true;
+            DeliveryPerson dp = context.DeliveryPersons.Where(d => d.DeliveryPersonId == userId)
+                .Include(p => p.DeliveryPersonNavigation)
+                .Include(p=> p.Orders).FirstOrDefault();
+            return dp;
         }
 
         [Route("GetWaitingOrders")]

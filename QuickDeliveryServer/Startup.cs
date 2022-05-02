@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using QuickDeliveryServerBL.Models;
+using QuickDeliveryServer.Hubs;
 
 namespace QuickDeliveryServer
 {
@@ -51,6 +52,9 @@ namespace QuickDeliveryServer
                                                                 .UseSqlServer(connectionString));
             //.UseLazyLoadingProxies());
             #endregion
+
+            //Add SignalR
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +72,7 @@ namespace QuickDeliveryServer
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<DeliveryHub>("/delivery");
             });
         }
     }
