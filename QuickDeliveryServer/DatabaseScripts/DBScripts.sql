@@ -20,13 +20,13 @@ UserEmail nvarchar (30) NOT NULL UNIQUE,
 UserBirthDate datetime,
 IsAdmin bit NOT NULL default(0),
 HasDiscount bit default(0),
-UserAddress nvarchar (30) NOT NULL,
+UserStreet nvarchar (30) NOT NULL,
+UserHouseNum int NOT NULL,
 UserCity nvarchar (30) NOT NULL,
 NumCreditCard nvarchar (30) NOT NULL,
 NumCode nvarchar (3) NOT NULL,
 ValidityCreditCard datetime
 );
-
 
 CREATE TABLE DeliveryPersons(
 DeliveryPersonID int PRIMARY KEY FOREIGN KEY REFERENCES Users(UserID),
@@ -44,7 +44,8 @@ AccountNumber int NULL,
 CREATE TABLE Shop(
 ShopID int IDENTITY (1,1) PRIMARY KEY,
 ShopName nvarchar (30) NOT NULL,
-ShopAdress nvarchar (30) NOT NULL,
+ShopStreet nvarchar (30) NOT NULL,
+ShopHouseNum int NOT NULL,
 ShopCity nvarchar (30) NOT NULL,
 ShopPhone nvarchar (30) NOT NULL,
 ShopManagerID int FOREIGN KEY REFERENCES ShopManagers(ShopManagerID),
@@ -84,7 +85,8 @@ DeliveryPersonID int FOREIGN KEY REFERENCES DeliveryPersons(DeliveryPersonID),
 StatusOrderID int FOREIGN KEY REFERENCES StatusOrder(StatusOrderID),
 OrderDate datetime NOT NULL,
 TotalPrice decimal(9,2),
-OrderAddress nvarchar (30) NOT NULL,
+OrderStreet nvarchar (30) NOT NULL,
+OrderHouseNum int NOT NULL,
 OrderCity nvarchar (30) NOT NULL,
 );
 
@@ -140,18 +142,18 @@ VALUES ('Skirts');
 INSERT INTO ProductType (ProductTypeName)
 VALUES ('Jackets');
 
-INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
-VALUES ('Pull and Bear', 'המלאכה 6', 'רעננה', '059-951-0510');
-INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
-VALUES ('Pull and Bear', 'שדרות שבעת הכוכבים 8', 'הרצליה', '09-958-7176');
-INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
-VALUES ('Pull and Bear', 'זבוטינסקי 72', 'פתח תקווה', '03-603-2547');
-INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
-VALUES ('Adika', 'דרך מנחם בגין 132', 'תל אביב יפו', '03-800-1000');
-INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
-VALUES ('Adika', 'דיזנגוף 50', 'תל אביב יפו', '03-800-1000');
-INSERT INTO Shop (ShopName, ShopAdress, ShopCity ,ShopPhone)
-VALUES ('Adika', 'בני ברמן', 'נתניה', '03-800-1000');
+INSERT INTO Shop (ShopName, ShopStreet, ShopHouseNum, ShopCity ,ShopPhone)
+VALUES ('Pull and Bear', 'המלאכה', 6, 'רעננה', '059-951-0510');
+INSERT INTO Shop (ShopName, ShopStreet, ShopHouseNum, ShopCity ,ShopPhone)
+VALUES ('Pull and Bear', 'שדרות שבעת הכוכבים', 8, 'הרצליה', '09-958-7176');
+INSERT INTO Shop (ShopName, ShopStreet, ShopHouseNum, ShopCity ,ShopPhone)
+VALUES ('Pull and Bear', 'זבוטינסקי', 72, 'פתח תקווה', '03-603-2547');
+INSERT INTO Shop (ShopName, ShopStreet, ShopHouseNum, ShopCity ,ShopPhone)
+VALUES ('Adika', 'דרך מנחם בגין', 132, 'תל אביב יפו', '03-800-1000');
+INSERT INTO Shop (ShopName, ShopStreet, ShopHouseNum, ShopCity ,ShopPhone)
+VALUES ('Adika', 'דיזנגוף', 50, 'תל אביב יפו', '03-800-1000');
+INSERT INTO Shop (ShopName, ShopStreet, ShopHouseNum, ShopCity ,ShopPhone)
+VALUES ('Adika', 'בני ברמן', 1, 'נתניה', '03-800-1000');
 
 
 SET IDENTITY_INSERT Products ON;  
@@ -177,8 +179,8 @@ VALUES (1008,'עליונית BASIC עם כפתורים', 2, 7, 2, 100, 199.00);
 GO
 
 insert users (UserFName, UserLName, UserPassword, UserPhone, UserEmail, UserBirthDate, IsAdmin, HasDiscount,
-UserAddress, UserCity, NumCreditCard, NumCode, ValidityCreditCard) values 
-('Roni', 'Cohen', '1234', '099989898', 'ronico612@gmail.com', '6-DEC-2004',1, 0, 'Kinor 6', 'Hod Hasharon', '9999999999999999', '234', '1-DEC-2040')
+UserStreet, UserHouseNum, UserCity, NumCreditCard, NumCode, ValidityCreditCard) values 
+('רוני', 'כהן', '1234', '099989898', 'ronico612@gmail.com', '6-DEC-2004',1, 0, 'כינור', 6,'הוד השרון', '9999999999999999', '234', '1-DEC-2040')
 Go
 
 insert ShopManagers(ShopManagerID, Bank, Branch, AccountNumber)

@@ -105,13 +105,14 @@ namespace QuickDeliveryServerBL.Models
             }
         }
 
-        public bool UpdateUser(User currentUser, string phone, string address, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
+        public bool UpdateUser(User currentUser, string phone, string street, int houseNum, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
         {
             try
             {
                 User user = this.Users.Where(u => u.UserId == currentUser.UserId).FirstOrDefault();
                 user.UserPhone = phone;
-                user.UserAddress = address;
+                user.UserStreet = street;
+                user.UserHouseNum = houseNum;
                 user.UserCity = city;
                 user.NumCreditCard = numCreditCard;
                 user.NumCode = numCode;
@@ -211,13 +212,14 @@ namespace QuickDeliveryServerBL.Models
             }
         }
 
-        public bool UpdateShop(int shopId, string shopName, string shopAdress, string shopCity, string shopPhone, int shopManagerId)
+        public bool UpdateShop(int shopId, string shopName, string shopStreet, int shopHouseNum, string shopCity, string shopPhone, int shopManagerId)
         {
             try
             {
                 Shop s = this.Shops.Where(ss => ss.ShopId == shopId).FirstOrDefault();
                 s.ShopName = shopName;
-                s.ShopAdress = shopAdress;
+                s.ShopStreet = shopStreet;
+                s.ShopHouseNum = shopHouseNum;
                 s.ShopCity = shopCity;
                 s.ShopPhone = shopPhone;
                 s.ShopManagerId = shopManagerId;

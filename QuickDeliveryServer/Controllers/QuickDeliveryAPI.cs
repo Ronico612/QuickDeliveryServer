@@ -134,9 +134,9 @@ namespace QuickDeliveryServer.Controllers
 
         [Route("UpdateUser")]
         [HttpPost]
-        public bool UpdateUser([FromBody] User currentUser, [FromQuery] string phone, string address, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
+        public bool UpdateUser([FromBody] User currentUser, [FromQuery] string phone, string street, int houseNum, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
         {
-            bool isUdatedUser = context.UpdateUser(currentUser, phone, address, city, numCreditCard, numCode, validityCreditCard);
+            bool isUdatedUser = context.UpdateUser(currentUser, phone, street, houseNum, city, numCreditCard, numCode, validityCreditCard);
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             return isUdatedUser;
         }
@@ -234,9 +234,9 @@ namespace QuickDeliveryServer.Controllers
 
         [Route("UpdateShop")]
         [HttpGet]
-        public bool UpdateShop([FromQuery] int shopId, string shopName, string shopAdress, string shopCity, string shopPhone, int shopManagerId)
+        public bool UpdateShop([FromQuery] int shopId, string shopName, string shopStreet, int shopHouseNum, string shopCity, string shopPhone, int shopManagerId)
         {
-            bool isUdatedShop = context.UpdateShop(shopId, shopName, shopAdress, shopCity, shopPhone, shopManagerId);
+            bool isUdatedShop = context.UpdateShop(shopId, shopName, shopStreet, shopHouseNum, shopCity, shopPhone, shopManagerId);
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             return isUdatedShop;
         }

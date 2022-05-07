@@ -21,7 +21,8 @@ namespace QuickDeliveryServerBL.Models
         public DateTime? UserBirthDate { get; set; }
         public bool IsAdmin { get; set; }
         public bool? HasDiscount { get; set; }
-        public string UserAddress { get; set; }
+        public string UserStreet { get; set; }
+        public int UserHouseNum { get; set; }
         public string UserCity { get; set; }
         public string NumCreditCard { get; set; }
         public string NumCode { get; set; }

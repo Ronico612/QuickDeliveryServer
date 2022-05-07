@@ -95,15 +95,15 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.DeliveryPersonId).HasColumnName("DeliveryPersonID");
 
-                entity.Property(e => e.OrderAddress)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
                 entity.Property(e => e.OrderCity)
                     .IsRequired()
                     .HasMaxLength(30);
 
                 entity.Property(e => e.OrderDate).HasColumnType("datetime");
+
+                entity.Property(e => e.OrderStreet)
+                    .IsRequired()
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.StatusOrderId).HasColumnName("StatusOrderID");
 
@@ -199,10 +199,6 @@ namespace QuickDeliveryServerBL.Models
 
                 entity.Property(e => e.ShopId).HasColumnName("ShopID");
 
-                entity.Property(e => e.ShopAdress)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
                 entity.Property(e => e.ShopCity)
                     .IsRequired()
                     .HasMaxLength(30);
@@ -214,6 +210,10 @@ namespace QuickDeliveryServerBL.Models
                     .HasMaxLength(30);
 
                 entity.Property(e => e.ShopPhone)
+                    .IsRequired()
+                    .HasMaxLength(30);
+
+                entity.Property(e => e.ShopStreet)
                     .IsRequired()
                     .HasMaxLength(30);
 
@@ -249,7 +249,7 @@ namespace QuickDeliveryServerBL.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF878E7069F")
+                entity.HasIndex(e => e.UserEmail, "UQ__Users__08638DF86255B248")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
@@ -261,10 +261,6 @@ namespace QuickDeliveryServerBL.Models
                     .HasMaxLength(3);
 
                 entity.Property(e => e.NumCreditCard)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
-                entity.Property(e => e.UserAddress)
                     .IsRequired()
                     .HasMaxLength(30);
 
@@ -295,6 +291,10 @@ namespace QuickDeliveryServerBL.Models
                 entity.Property(e => e.UserPhone)
                     .IsRequired()
                     .HasMaxLength(20);
+
+                entity.Property(e => e.UserStreet)
+                    .IsRequired()
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.ValidityCreditCard).HasColumnType("datetime");
             });
