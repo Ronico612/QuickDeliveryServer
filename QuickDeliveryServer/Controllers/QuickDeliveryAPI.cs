@@ -84,6 +84,7 @@ namespace QuickDeliveryServer.Controllers
             return success;
         }
 
+        //
         [Route("PostNewOrder")]
         [HttpPost]
         public int PostNewOrder([FromBody] Order order)
@@ -102,6 +103,7 @@ namespace QuickDeliveryServer.Controllers
             return 0;
         }
 
+        //
         [Route("PostNewOrderProduct")]
         [HttpPost]
         public bool PostNewOrderProduct([FromBody] OrderProduct orderProduct)
@@ -118,6 +120,7 @@ namespace QuickDeliveryServer.Controllers
             return success;
         }
 
+        //
         [Route("RemoveProductCount")]
         [HttpGet]
         public bool RemoveProductCount([FromQuery] int productID, int countToRemove)
@@ -125,6 +128,7 @@ namespace QuickDeliveryServer.Controllers
             return context.RemoveProductCount(productID, countToRemove);
         }
 
+        //
         [Route("StatusOrderOrRemove")]
         [HttpGet]
         public void StatusOrderOrRemove([FromQuery] bool success, int orderID)
@@ -132,6 +136,7 @@ namespace QuickDeliveryServer.Controllers
             context.StatusOrderOrRemove(success, orderID);
         }
 
+        //
         [Route("UpdateUser")]
         [HttpPost]
         public bool UpdateUser([FromBody] User currentUser, [FromQuery] string phone, string street, int houseNum, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
@@ -141,6 +146,7 @@ namespace QuickDeliveryServer.Controllers
             return isUdatedUser;
         }
 
+        //
         [Route("GetUserOrders")]
         [HttpGet]
         public List<Order> GetUserOrders([FromQuery] int userId)
@@ -152,6 +158,7 @@ namespace QuickDeliveryServer.Controllers
                 .Include(u => u.User).ToList();
         }
 
+        //
         [Route("GetShopOrders")]
         [HttpGet]
         public List<Order> GetShopOrders([FromQuery] int shopId)
@@ -178,6 +185,7 @@ namespace QuickDeliveryServer.Controllers
             return context.ProductTypes.ToList();
         }
 
+        //
         [Route("UpdateProduct")]
         [HttpGet]
         public bool UpdateProduct([FromQuery] int productId, string productName, string count, string price, int ageProductTypeId, int productTypeId)
@@ -187,6 +195,7 @@ namespace QuickDeliveryServer.Controllers
             return isUdatedProduct;
         }
 
+        //
         [Route("AddProduct")]
         [HttpPost]
         public int AddProduct([FromBody] Product product)
@@ -196,6 +205,7 @@ namespace QuickDeliveryServer.Controllers
             return productId;
         }
 
+        //
         [Route("DeleteProduct")]
         [HttpGet]
         public bool DeleteProduct([FromQuery] int productId)
@@ -205,6 +215,7 @@ namespace QuickDeliveryServer.Controllers
             return isDeleted;
         }
 
+        //
         [Route("GetUser")]
         [HttpGet]
         public User GetUser([FromQuery] int userId)
@@ -214,6 +225,7 @@ namespace QuickDeliveryServer.Controllers
             return user;
         }
 
+        //
         [Route("AddShopManager")]
         [HttpGet]
         public int AddShopManager([FromQuery] string shopManagerEmail)
@@ -223,6 +235,7 @@ namespace QuickDeliveryServer.Controllers
             return userId;
         }
 
+        //
         [Route("AddShop")]
         [HttpPost]
         public int AddShop([FromBody] Shop shop)
@@ -232,6 +245,7 @@ namespace QuickDeliveryServer.Controllers
             return shopId;
         }
 
+        //
         [Route("UpdateShop")]
         [HttpGet]
         public bool UpdateShop([FromQuery] int shopId, string shopName, string shopStreet, int shopHouseNum, string shopCity, string shopPhone, int shopManagerId)
@@ -241,6 +255,7 @@ namespace QuickDeliveryServer.Controllers
             return isUdatedShop;
         }
 
+        //
         [Route("DeleteShopManager")]
         [HttpGet]
         public bool DeleteShopManager([FromQuery] int shopManagerId)
@@ -250,6 +265,7 @@ namespace QuickDeliveryServer.Controllers
             return isDeleted;
         }
 
+        //
         [Route("DeleteShop")]
         [HttpGet]
         public bool DeleteShop([FromQuery] int shopId)
@@ -259,6 +275,7 @@ namespace QuickDeliveryServer.Controllers
             return isDeleted;
         }
 
+        //
         [Route("GetDeliveryPersons")]
         [HttpGet]
         public List<User> GetDeliveryPersons()
@@ -272,6 +289,7 @@ namespace QuickDeliveryServer.Controllers
             return users;
         }
 
+        //
         [Route("AddDeliveryPerson")]
         [HttpGet]
         public int AddDeliveryPerson([FromQuery] string dpEmail)
@@ -281,6 +299,7 @@ namespace QuickDeliveryServer.Controllers
             return userId;
         }
 
+        //
         [Route("DeleteDeliveryPerson")]
         [HttpGet]
         public bool DeleteDeliveryPerson([FromQuery] int dpId)
@@ -290,6 +309,7 @@ namespace QuickDeliveryServer.Controllers
             return isDeleted;
         }
 
+        //
         [Route("IsDeliveyPerson")]
         [HttpGet]
         public DeliveryPerson IsDeliveyPerson(int userId)
@@ -300,6 +320,7 @@ namespace QuickDeliveryServer.Controllers
             return dp;
         }
 
+        //
         [Route("GetWaitingOrders")]
         [HttpGet]
         public List<Order> GetWaitingOrders()
@@ -312,6 +333,7 @@ namespace QuickDeliveryServer.Controllers
            .ToList();
         }
 
+        //
         [Route("UpdateStatusOrder")]
         [HttpGet]
         public bool UpdateStatusOrder(int orderId, int userId, int statusId)
@@ -321,6 +343,7 @@ namespace QuickDeliveryServer.Controllers
             return isUpdated;
         }
 
+        //
         [Route("GetApprovedOrTakenOrders")]
         [HttpGet]
         public List<Order> GetApprovedOrTakenOrders(int deliveryPersonId)
@@ -333,6 +356,7 @@ namespace QuickDeliveryServer.Controllers
            .ToList();
         }
 
+        //
         [Route("GetHistoryDeliveryPersonOrders")]
         [HttpGet]
         public List<Order> GetHistoryDeliveryPersonOrders(int deliveryPersonId)
@@ -346,6 +370,7 @@ namespace QuickDeliveryServer.Controllers
            .ToList();
         }
 
+        //
         [Route("GetStatusOrderDate")]
         [HttpGet]
         public DateTime GetStatusOrderDate(int orderId, int statusId)
@@ -356,6 +381,7 @@ namespace QuickDeliveryServer.Controllers
             return (DateTime)allStatusOfOrder.StatusTime;
         }
 
+        //
         [Route("GetUsers")]
         [HttpGet]
         public List<User> GetUsers()
@@ -363,6 +389,7 @@ namespace QuickDeliveryServer.Controllers
             return context.Users.ToList();
         }
 
+        //
         [Route("UploadProductImage")]
         [HttpPost]
         public async Task<IActionResult> UploadProductImage(IFormFile file)
@@ -395,7 +422,8 @@ namespace QuickDeliveryServer.Controllers
             }
             return Forbid();
         }
-
+        
+        //
         [Route("UploadShopImage")]
         [HttpPost]
         public async Task<IActionResult> UploadShopImage(IFormFile file)
