@@ -163,7 +163,6 @@ namespace QuickDeliveryServerBL.Models
             }
         }
 
-
         public int AddProduct(Product p)
         {
             try
@@ -325,7 +324,5 @@ namespace QuickDeliveryServerBL.Models
                 return false;
             }
         }
-
-       
     }
 }

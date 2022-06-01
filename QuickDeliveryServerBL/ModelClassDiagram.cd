@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="QuickDeliveryServerBL.Models.AgeProductType" Collapsed="true">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAABAAAQ=</HashCode>
+      <FileName>Models\AgeProductType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.AllStatusOfOrder" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAEAAAAAAAABAAAQAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AllStatusOfOrder.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Order" />
+      <Property Name="StatusOrder" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.DeliveryPerson" Collapsed="true">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\DeliveryPerson.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Orders" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.Order" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAABAAABAAAFAgAQAAAIAAgAAAAAQAAAAAAKAAAAAAg=</HashCode>
+      <FileName>Models\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DeliveryPerson" />
+      <Property Name="User" />
+      <Property Name="StatusOrder" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AllStatusOfOrders" />
+      <Property Name="OrderProducts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.OrderProduct" Collapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAECAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\OrderProduct.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+      <Property Name="Order" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.Product" Collapsed="true">
+    <Position X="9" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAAAAARCQAAAAAAAAAQgAAAAACAAAAAAAAAAQAJAAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AgeProductType" />
+      <Property Name="ProductType" />
+      <Property Name="Shop" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="OrderProducts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.ProductType" Collapsed="true">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\ProductType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.QuickDeliveryContext" Collapsed="true">
+    <Position X="12.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAACARCQAwAgAQEAAQQgyAUYABAAAAEIASAAIBEIQ=</HashCode>
+      <FileName>Models\QuickDeliveryContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.Shop" Collapsed="true">
+    <Position X="9" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAASAAAAAAAhAAAAEAAwAAEAQ=</HashCode>
+      <FileName>Models\Shop.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ShopManager" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Products" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.ShopManager" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAEAAAAAAAAAiAAAgAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\ShopManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.StatusOrder" Collapsed="true">
+    <Position X="6" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAABAgAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StatusOrder.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Orders" />
+      <Property Name="AllStatusOfOrders" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="QuickDeliveryServerBL.Models.User" Collapsed="true">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAABEABEAgAAQEAAgACAAAAAIAABgGCAIAEAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ShopManager" />
+      <Property Name="DeliveryPerson" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
