@@ -92,6 +92,32 @@ namespace QuickDeliveryServer.Controllers
             return success;
         }
 
+        [Route("Logout")]
+        [HttpPost]
+        public bool Logout([FromBody] User user)
+        {
+            try
+            {
+                User u = HttpContext.Session.GetObject<User>("theUser");
+                if (u != null)
+                {
+                    HttpContext.Session.Remove("theUser");
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                    return true;
+                }
+                else
+                {
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
+                    return false;
+                }
+            }
+            catch(Exception e)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.NotFound;
+                return false;
+            }
+        }
+
         [Route("PostNewOrder")]
         [HttpPost]
         public int PostNewOrder([FromBody] Order order)
