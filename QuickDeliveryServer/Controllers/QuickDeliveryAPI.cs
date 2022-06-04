@@ -40,8 +40,10 @@ namespace QuickDeliveryServer.Controllers
         public bool IsUserEmailExist([FromQuery] string email)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
+                // Check if a user with this email exist in the database
                 User user = context.Users.Where(u => u.UserEmail == email).FirstOrDefault();
                 return user != null;
             }
@@ -56,9 +58,9 @@ namespace QuickDeliveryServer.Controllers
         [HttpGet]
         public User Login([FromQuery] string email, [FromQuery] string pass)
         {
+            //Check user name and password
             User user = context.Login(email, pass);
 
-            //Check user name and password
             if (user != null)
             {
                 HttpContext.Session.SetObject("theUser", user);
@@ -70,7 +72,6 @@ namespace QuickDeliveryServer.Controllers
             }
             else
             {
-
                 Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
                 return null;
             }
@@ -123,6 +124,7 @@ namespace QuickDeliveryServer.Controllers
         public int PostNewOrder([FromBody] Order order)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 int newOrderID = context.NewOrder(order);
@@ -149,6 +151,7 @@ namespace QuickDeliveryServer.Controllers
         public bool PostNewOrderProduct([FromBody] OrderProduct orderProduct)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool success = context.NewOrderProduct(orderProduct);
@@ -174,6 +177,7 @@ namespace QuickDeliveryServer.Controllers
         public bool RemoveProductCount([FromQuery] int productID, int countToRemove)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 return context.RemoveProductCount(productID, countToRemove);
@@ -190,6 +194,7 @@ namespace QuickDeliveryServer.Controllers
         public void StatusOrderOrRemove([FromQuery] bool success, int orderID)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 context.StatusOrderOrRemove(success, orderID);
@@ -205,6 +210,7 @@ namespace QuickDeliveryServer.Controllers
         public bool UpdateUser([FromBody] User currentUser, [FromQuery] string phone, string street, int houseNum, string city, string numCreditCard, string numCode, DateTime validityCreditCard)
         {
             User curUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (curUser != null)
             {
                 bool isUdatedUser = context.UpdateUser(currentUser, phone, street, houseNum, city, numCreditCard, numCode, validityCreditCard);
@@ -223,6 +229,7 @@ namespace QuickDeliveryServer.Controllers
         public List<Order> GetUserOrders([FromQuery] int userId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 return context.Orders.Where(o => o.UserId == userId)
@@ -243,6 +250,7 @@ namespace QuickDeliveryServer.Controllers
         public List<Order> GetShopOrders([FromQuery] int shopId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 return context.Orders
@@ -278,6 +286,7 @@ namespace QuickDeliveryServer.Controllers
         public bool UpdateProduct([FromQuery] int productId, string productName, string count, string price, int ageProductTypeId, int productTypeId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool isUdatedProduct = context.UpdateProduct(productId, productName, count, price, ageProductTypeId, productTypeId);
@@ -296,6 +305,7 @@ namespace QuickDeliveryServer.Controllers
         public int AddProduct([FromBody] Product product)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 int productId = context.AddProduct(product);
@@ -314,6 +324,7 @@ namespace QuickDeliveryServer.Controllers
         public bool DeleteProduct([FromQuery] int productId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool isDeleted = context.DeleteProduct(productId);
@@ -332,6 +343,7 @@ namespace QuickDeliveryServer.Controllers
         public User GetUser([FromQuery] int userId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 User user = context.Users.Where(u => u.UserId == userId).FirstOrDefault();
@@ -350,6 +362,7 @@ namespace QuickDeliveryServer.Controllers
         public int AddShopManager([FromQuery] string shopManagerEmail)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 int userId = context.AddShopManager(shopManagerEmail);
@@ -368,6 +381,7 @@ namespace QuickDeliveryServer.Controllers
         public int AddShop([FromBody] Shop shop)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 int shopId = context.AddShop(shop);
@@ -386,6 +400,7 @@ namespace QuickDeliveryServer.Controllers
         public bool UpdateShop([FromQuery] int shopId, string shopName, string shopStreet, int shopHouseNum, string shopCity, string shopPhone, int shopManagerId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool isUdatedShop = context.UpdateShop(shopId, shopName, shopStreet, shopHouseNum, shopCity, shopPhone, shopManagerId);
@@ -404,6 +419,7 @@ namespace QuickDeliveryServer.Controllers
         public bool DeleteShopManager([FromQuery] int shopManagerId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool isDeleted = context.DeleteShopManager(shopManagerId);
@@ -422,6 +438,7 @@ namespace QuickDeliveryServer.Controllers
         public bool DeleteShop([FromQuery] int shopId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool isDeleted = context.DeleteShop(shopId);
@@ -440,6 +457,7 @@ namespace QuickDeliveryServer.Controllers
         public List<User> GetDeliveryPersons()
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 List<DeliveryPerson> list = context.DeliveryPersons.ToList();
@@ -462,6 +480,7 @@ namespace QuickDeliveryServer.Controllers
         public int AddDeliveryPerson([FromQuery] string dpEmail)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 int userId = context.AddDeliveryPerson(dpEmail);
@@ -480,6 +499,7 @@ namespace QuickDeliveryServer.Controllers
         public bool DeleteDeliveryPerson([FromQuery] int dpId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool isDeleted = context.DeleteDeliveryPerson(dpId);
@@ -498,6 +518,7 @@ namespace QuickDeliveryServer.Controllers
         public DeliveryPerson IsDeliveyPerson(int userId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 DeliveryPerson dp = context.DeliveryPersons.Where(d => d.DeliveryPersonId == userId)
@@ -517,6 +538,7 @@ namespace QuickDeliveryServer.Controllers
         public List<Order> GetWaitingOrders()
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 return context.Orders.Where(os => os.StatusOrder.StatusOrderId == 1)
@@ -538,6 +560,7 @@ namespace QuickDeliveryServer.Controllers
         public bool UpdateStatusOrder(int orderId, int userId, int statusId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 bool isUpdated = context.UpdateStatusOrder(orderId, userId, statusId);
@@ -556,6 +579,7 @@ namespace QuickDeliveryServer.Controllers
         public List<Order> GetApprovedOrTakenOrders(int deliveryPersonId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 return context.Orders.Where(os => (os.StatusOrder.StatusOrderId == 2 || os.StatusOrder.StatusOrderId == 3) && os.DeliveryPersonId == deliveryPersonId)
@@ -577,6 +601,7 @@ namespace QuickDeliveryServer.Controllers
         public List<Order> GetHistoryDeliveryPersonOrders(int deliveryPersonId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 return context.Orders.Where(os => os.StatusOrder.StatusOrderId == 4 && os.DeliveryPersonId == deliveryPersonId)
@@ -599,6 +624,7 @@ namespace QuickDeliveryServer.Controllers
         public DateTime GetStatusOrderDate(int orderId, int statusId)
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 AllStatusOfOrder allStatusOfOrder = context.AllStatusOfOrders.Where(s => s.OrderId == orderId && s.StatusOrderId == statusId).FirstOrDefault();
@@ -618,6 +644,7 @@ namespace QuickDeliveryServer.Controllers
         public List<User> GetUsers()
         {
             User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            // Check if the user is login
             if (currentUser != null)
             {
                 return context.Users.ToList();

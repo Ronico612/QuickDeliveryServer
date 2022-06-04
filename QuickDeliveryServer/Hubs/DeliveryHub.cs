@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace QuickDeliveryServer.Hubs
 {
-    public class DeliveryHub:Hub
+    public class DeliveryHub : Hub
     {
         public async Task UpdateOrderStatus(string orderId, string statusId)
         {
